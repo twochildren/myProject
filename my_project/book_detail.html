@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/book_detail.css">
+</head>
+<body>
+    <div class="header"></div>
+    <div class="main">
+        <div class="book_show">
+            <div class="left book-img">
+                <img src="img/xs1.jpg" alt="">
+            </div>
+            <div class="left book-intr">
+                <h3>极品狂枭</h3>
+                    <div class="content">
+                        <p>
+                            <span>作者：</span> <a href="#">可可</a>
+                        </p>
+                        <p><span>价钱:</span>￥23.00</p>
+                        <p>
+                            <span>好评：</span>
+                            <a class="progress-bar"><b class="progress"></b></a>
+                            <span>75%</span>
+                            <span class="zan"> <b class="glyphicon-thumbs-up glyphicon"></b> 21万</span>
+                        </p>
+                        <p>
+                            <span>简介：</span>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias, culpa cupiditate dolores dolorum est et eveniet ex impedit, incidunt itaque laudantium nam nemo odio odit perspiciatis sapiente, voluptatem voluptatibus.
+                        </p>
+                    </div>
+            </div>
+        </div>
+        <div class="book_comment">
+            <div class="comment_header">
+                <b></b><h3>评论 <span>(23331)</span></h3>
+            </div>
+            <div class="comment_body">
+                <div class="comment_editor">
+                    <div class="tx_lg left">
+                        <img src="img/tx.jpg" alt="">
+                    </div>
+                    <div class="comment_write">
+                        <textarea name="" id="" cols="30" rows="5"></textarea>
+                        <input type="button" value="提交" class="right">
+                    </div>
+                </div>
+                <ul class="comment_title">
+                    <li data-comment-type="new" class="active"><a href="#">最新评论</a></li>
+                    <li data-comment-type="hot"><a href="#">最热评论</a></li>
+                </ul>
+                <div id="tab_new" class="tab_body">
+                   
+                </div>
+								<div class="more">
+										<button>加载更多</button>
+								</div>
+            </div>
+        </div>
+    </div>
+		 <!--模态框-->
+    <div class="modal">
+        
+    </div>
+    <div class="footer"></div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/detail.js"></script>
+		<script type="text/javascript">
+			
+			//1页面加载完成时，异步请求new类型的评论
+			$(function(){
+				//$.get  $.getJSON  $.ajax
+				$.getJSON('data/addMore.php',{type:'new'}, function(list){
+					console.log('开始处理响应数据');
+					//console.log(arguments);
+					var html = '';
+					$.each(list, function(i,comment){
+						html += `
+							<div class="person">
+														<div class="tx_sm left">
+																<img src="${comment.upic}" alt="">
+														</div>
+														<div class="left left_side">
+																<p class="person_name">${comment.uname}:</p>
+																<p class="person_content">${comment.ureply}</p>
+																<p class="time">${comment.cdate}</p>
+																<span class="right">
+																		<a href="#" class="glyphicon glyphicon-pencil right">回复</a>
+																		<b class="right">|</b>
+																		<a href="#" class="glyphicon glyphicon-thumbs-up right">赞</a>
+																</span>
+														</div>
+												</div>
+						`;
+					});
+					$('.tab_body').html(html);
+					//点击加载更多会触发的事件
+					//clickBtn(list,'new');
+					clickBtn('new');
+				});
+			});
+			//2鼠标悬停在某个类别下，异步请求该类型的评论
+			$('.comment_title li').mouseenter(function(){
+				$(this).addClass('active').siblings('.active').removeClass('active');
+				//读取li的data-扩展属性
+				var type = $(this).data('comment-type');
+				//异步请求该类型的汽车
+				$.getJSON('data/addMore.php',{'type':type}, function(list){
+					console.log('开始处理响应数据');
+							 //console.log(arguments);
+					var html = '';
+					$.each(list, function(i,comment){
+						html += `
+							<div class="person">
+														<div class="tx_sm left">
+																<img src="${comment.upic}" alt="">
+														</div>
+														<div class="left left_side">
+																<p class="person_name">${comment.uname}:</p>
+																<p class="person_content">${comment.ureply}</p>
+																<p class="time">${comment.cdate}</p>
+																<span class="right">
+																		<a href="#" class="glyphicon glyphicon-pencil right">回复</a>
+																		<b class="right">|</b>
+																		<a href="#" class="glyphicon glyphicon-thumbs-up right">赞</a>
+																</span>
+														</div>
+												</div>
+						`;
+					});
+					$('.tab_body').html(html);
+					//点击加载更多会触发的事件
+					clickBtn(type);
+				});
+			});
+			//点击加载更多会触发的事件
+			function clickBtn(type){
+				$('.more>button')[0].onclick=function(){
+						console.log(this);
+						console.log($('.tab_body>div.person').length);
+						var itemVal=$('.tab_body>div.person').length;
+						$.getJSON('data/addMore.php',{item:itemVal,type:type},function(data){
+								//var html=$('.tab_body').html();
+								//data=list.concat(data);
+								if(String(data).length==0){
+										$('.more>button').html("没有更多了");
+								}else{
+										var html=``;
+										$.each(data, function(i,comment){
+										html += `
+											<div class="person">
+															<div class="tx_sm left">
+																	<img src="${comment.upic}" alt="">
+															</div>
+															<div class="left left_side">
+																	<p class="person_name">${comment.uname}:</p>
+																	<p class="person_content">${comment.ureply}</p>
+																	<p class="time">${comment.cdate}</p>
+																	<span class="right">
+																			<a href="#" class="glyphicon glyphicon-pencil right">回复</a>
+																			<b class="right">|</b>
+																			<a href="#" class="glyphicon glyphicon-thumbs-up right">赞</a>
+																	</span>
+															</div>
+												</div>
+								`;
+										});
+										$('.tab_body').append(html);
+								}				
+						});
+				};
+			}
+			//点击提交加载评论
+			$('.comment_write>input').click(function(){
+					//console.log(this);
+					var val=$('.comment_write>textarea').val();
+					//console.log(val);
+					if(val==""){
+							console.log("评论不能为空");
+							$('.comment_write>textarea').val("评论不能为空");
+							$('.comment_write>textarea').focus(function(){
+									console.log("获得焦点");
+									$('.comment_write>textarea').val("");
+							});
+					}else{
+							console.log("输入框不为空，你想怎样?");
+					}
+			});
+			//页面加载时异步请求详情
+			$(function(){
+					console.log(location.search);
+					var str=location.search;
+					index=str.indexOf('=');
+					var id=str.slice(index+1);
+					$.getJSON('data/book_detail.php',{'id':id},function(data){
+							console.log('求详情');
+					});
+			});
+			
+		</script>
+</body>
+</html>

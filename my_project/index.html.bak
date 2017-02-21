@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="header"></div>
+    <div class="banner-block">
+        <div class="banner">
+            <img class="normal curr" src="img/1.png">
+            <img class="normal" src="img/2.png">
+            <img class="normal" src="img/3.png">
+            <img class="normal" src="img/4.png">
+            <img class="normal" src="img/5.png">
+            <img class="normal" src="img/6.png">
+        </div>
+        <div class="buttons">
+            <a href="#" onmouseover="change(0)" class="button currbtn">1</a>
+            <a href="#" onmouseover="change(1)" class="button">2</a>
+            <a href="#" onmouseover="change(2)" class="button">3</a>
+            <a href="#" onmouseover="change(3)" class="button">4</a>
+            <a href="#" onmouseover="change(4)" class="button">5</a>
+            <a href="#" onmouseover="change(5)" class="button">6</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="affix">
+            <div class="title">栏目分类</div>
+            <ul>
+                <li><a href="#xh1">玄幻小说</a></li>
+                <li><a href="#xh2">言情小说</a></li>
+                <li><a href="#xh3">修仙小说</a></li>
+                <li><a href="#xh4">历史小说</a></li>
+                <li><a href="#xh5">悬疑小说</a></li>
+                <li><a href="#xh6">军事小说</a></li>
+                <li><a href="#xh7">穿越小说</a></li>
+                <li><a href="#xh8">总裁小说</a></li>
+                <li><a href="#xh9">玄幻小说9</a></li>
+                <li><a href="#xh10">玄幻小说10</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div id="xh1">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh2" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh3" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh4" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh5" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh6" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh7" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh8" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh9" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="xh10" style="display:none;">
+                <ul>
+
+                </ul>
+                <div class="pagination-block">
+                    <ol class="pagination">
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer"></div>
+    <!--模态框-->
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span> <img src="" alt=""></span>
+                    <h3>登录络绎账号</h3>
+                    <span class="close">x</span>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form" method="post" action="data/login.php">
+                        <div class="form-group form-group-itemu">
+                            <span class="glyphicon glyphicon-search"></span>
+                            <input type="text" name="uname" id="user" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group form-group-itemu">
+                            <span class="glyphicon glyphicon-search"></span>
+                            <input type="password" name="upwd" id="password" placeholder="请输入密码">
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="check" class="left">
+                            <label for="check" class="left">下次自动登录</label>
+                            <a class="right" href="#">登录遇到问题</a>
+                        </div>
+                        <div class="form-group">
+                            <input type="button" value="登录" class="submit" id="bt-login">
+                        </div>
+                    </form>
+                    <span class="right"> <a href="#">立即注册</a></span>
+                </div>
+                <div class="modal-footer">
+                    <span>可以使用以下方式登录</span>
+                    <div class="left">
+                        <img src="" alt="">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/banner.js"></script>
+    <script src="js/sf.js"></script>
+    <script src="js/bookshop.js"></script>
+    <script>
+
+    </script>
+
+</body>
+</html>
